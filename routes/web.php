@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BonoController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\VacacionController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\PostulanteReclutamientoController;
 use App\Http\Controllers\ReclutamientoController;
 use App\Http\Controllers\HomeController;
@@ -70,6 +71,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('vacaciones/empleados/ver/{id}', [VacacionController::class, 'showEmpleado'])->name('vacacion.verEmpleado');
     Route::get('vacaciones/create/{id}', [VacacionController::class, 'create'])->name('vacacion.create');
     Route::resource('vacaciones', VacacionController::class);
+
+    Route::get('permisos/empleados', [PermisoController::class, 'indexEmpleado'])->name('permiso.indexEmpleado'); 
+    Route::get('permisos/empleados/ver/{id}', [PermisoController::class, 'showEmpleado'])->name('permiso.verEmpleado');
+    Route::get('permisos/create/{id}', [PermisoController::class, 'create'])->name('permiso.create');
+    Route::resource('permisos', PermisoController::class);
 
    
     //para los pdfs aqui iran las rutas

@@ -49,6 +49,7 @@
                 <a class="nav-link" href="#">Gestionar Aguinaldos</a>
                 <a class="nav-link" href="#">Gestionar Reportes Planilla</a>
                 <a class="nav-link" href="/bonos">Gestionar Bono</a>
+                <a class="nav-link" href="/descuentos">Gestionar Descuento</a>
             </div>
           </li>
           <li class="nav-item">

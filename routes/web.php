@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\BonoController;
+use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\VacacionController;
 use App\Http\Controllers\PostulanteReclutamientoController;
 use App\Http\Controllers\ReclutamientoController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RoleController;
+use App\Models\Descuento;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +59,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('bonos/empleados/ver/{id}', [BonoController::class, 'showEmpleado'])->name('bono.verEmpleado');
     Route::get('bonos/create/{id}', [BonoController::class, 'create'])->name('bono.create');
     Route::resource('bonos', BonoController::class);
+
+    Route::get('descuentos/empleados', [DescuentoController::class, 'indexEmpleado'])->name('descuento.indexEmpleado');
+    Route::get('descuentos/empleados/ver/{id}', [DescuentoController::class, 'showEmpleado'])->name('descuento.verEmpleado');
+    Route::get('descuentos/create/{id}', [DescuentoController::class, 'create'])->name('descuento.create');
+    Route::resource('descuentos', DescuentoController::class);
 
 
     Route::get('vacaciones/empleados', [VacacionController::class, 'indexEmpleado'])->name('vacacion.indexEmpleado'); 

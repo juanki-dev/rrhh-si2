@@ -18,7 +18,7 @@
             <div class="collapse" id="ui-basic">
                 <a class="nav-link" href="/reclutamientos">Gestionar Reclutamiento</a>
                 <a class="nav-link" href="/postulantes">Gestionar Postulantes</a>
-                <a class="nav-link" href="#">Gestionar Entrevistas</a>
+                <a class="nav-link" href="/entrevistas">Gestionar Entrevistas</a>
             </div>
           </li>
           <!--Menu..Empleados-->
@@ -70,7 +70,7 @@
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="icons">
-                <a class="nav-link" href="#">Gestionar Horarios</a>
+                <a class="nav-link" href="/horarios">Gestionar Horarios</a>
                 <a class="nav-link" href="#">Gestionar Asistencias</a>
                 <a class="nav-link" href="#">Gestionar Horas Extras</a>
             </div>

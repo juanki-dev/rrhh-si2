@@ -16,6 +16,8 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\EntrevistaController;
+use App\Http\Controllers\HorarioController;
 use App\Models\Descuento;
 
 Route::get('/', function () {
@@ -55,6 +57,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('departamentos', DepartamentoController::class);
     Route::resource('bitacora', BitacoraController::class)->names('bitacora');
     Route::resource('roles', RoleController::class);
+    Route::resource('entrevistas', EntrevistaController::class);
+    Route::resource('horarios', HorarioController::class);
+    
     Route::get('bonos/empleados', [BonoController::class, 'indexEmpleado'])->name('bono.indexEmpleado');
     Route::get('bonos/empleados/ver/{id}', [BonoController::class, 'showEmpleado'])->name('bono.verEmpleado');
     Route::get('bonos/create/{id}', [BonoController::class, 'create'])->name('bono.create');

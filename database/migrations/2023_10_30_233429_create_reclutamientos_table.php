@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('reclutamientos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
             $table->date('fechainicio');
             $table->date('fechafin');
             $table->string('descripcion');

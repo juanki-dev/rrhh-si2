@@ -45,7 +45,7 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Guardar</button>
-                    <button class="btn btn-light">Cancelar</button>
+                    <a class="btn btn-light" href="{{ route('reclutamientos.index') }}">Cancelar </a>
                     {!! Form::close() !!}
                 </div>
             </div>

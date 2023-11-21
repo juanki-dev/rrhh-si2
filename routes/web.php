@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\MemorandumController;
+use App\Http\Controllers\EmpleadoMemorandumController;
+
 use App\Http\Controllers\BonoController;
 use App\Http\Controllers\VacacionController;
 use App\Http\Controllers\PostulanteReclutamientoController;
@@ -30,22 +33,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 //y creamos un grupo de rutas protegidas para los controladores
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('reclutamientos/assign/{id}', [ReclutamientoController::class, 'assign'])
-        ->name('reclutamientos.assign');
-
-    Route::resource('reclutamientos', ReclutamientoController::class);
-     /*    Route::get('/reclutamientos/{id}', [ReclutamientoController::class, 'show'])
-        ->name('reclutamientos.show'); */
-
-
-    Route::get(
-        'postulantereclutamiento/store/{idpostulante}/{idreclutamiento}',
-        [PostulanteReclutamientoController::class, 'store2']
-    )->name('postulantereclutamientos.store');
-
-    
-
-
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('postulantes', PostulanteController::class);
@@ -53,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('departamentos', DepartamentoController::class);
     Route::resource('bitacora', BitacoraController::class)->names('bitacora');
     Route::resource('roles', RoleController::class);
+    
     Route::get('bonos/empleados', [BonoController::class, 'indexEmpleado'])->name('bono.indexEmpleado');
     Route::get('bonos/empleados/ver/{id}', [BonoController::class, 'showEmpleado'])->name('bono.verEmpleado');
     Route::get('bonos/create/{id}', [BonoController::class, 'create'])->name('bono.create');
@@ -64,7 +52,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('vacaciones/create/{id}', [VacacionController::class, 'create'])->name('vacacion.create');
     Route::resource('vacaciones', VacacionController::class);
 
-   
+    Route::get('reclutamientos/assign/{id}', [ReclutamientoController::class, 'assign'])->name('reclutamientos.assign');
+    Route::get('postulantereclutamiento/store/{idpostulante}/{idreclutamiento}',[PostulanteReclutamientoController::class, 'store2'])->name('postulantereclutamientos.store');
+    Route::resource('reclutamientos', ReclutamientoController::class);
+
+    Route::get('memorandums/assign/{id}', [MemorandumController::class, 'assign'])->name('memorandums.assign');
+    Route::get('empleadomemorandum/store/{id_Empleado}/{id_Memorandum}',[EmpleadoMemorandumController::class, 'store'])->name('empleadomemorandums.store');
+    Route::resource('memorandums', MemorandumController::class);
     //para los pdfs aqui iran las rutas
     Route::get('/empleados/{empleado}/download-pdf', [EmpleadoController::class, 'downloadPDF'])->name('empleados.pdf');
     Route::get('/postulantes/{postulante}/download-pdf', [PostulanteController::class, 'downloadPDF'])->name('postulantes.pdf');

@@ -7,7 +7,9 @@ use App\Http\Controllers\MemorandumController;
 use App\Http\Controllers\EmpleadoMemorandumController;
 
 use App\Http\Controllers\BonoController;
+use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\VacacionController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\PostulanteReclutamientoController;
 use App\Http\Controllers\ReclutamientoController;
 use App\Http\Controllers\HomeController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RoleController;
+use App\Models\Descuento;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +49,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('bonos/create/{id}', [BonoController::class, 'create'])->name('bono.create');
     Route::resource('bonos', BonoController::class);
 
+    Route::get('descuentos/empleados', [DescuentoController::class, 'indexEmpleado'])->name('descuento.indexEmpleado');
+    Route::get('descuentos/empleados/ver/{id}', [DescuentoController::class, 'showEmpleado'])->name('descuento.verEmpleado');
+    Route::get('descuentos/create/{id}', [DescuentoController::class, 'create'])->name('descuento.create');
+    Route::resource('descuentos', DescuentoController::class);
+
 
     Route::get('vacaciones/empleados', [VacacionController::class, 'indexEmpleado'])->name('vacacion.indexEmpleado'); 
     Route::get('vacaciones/empleados/ver/{id}', [VacacionController::class, 'showEmpleado'])->name('vacacion.verEmpleado');
@@ -55,6 +63,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('reclutamientos/assign/{id}', [ReclutamientoController::class, 'assign'])->name('reclutamientos.assign');
     Route::get('postulantereclutamiento/store/{idpostulante}/{idreclutamiento}',[PostulanteReclutamientoController::class, 'store2'])->name('postulantereclutamientos.store');
     Route::resource('reclutamientos', ReclutamientoController::class);
+    Route::get('permisos/empleados', [PermisoController::class, 'indexEmpleado'])->name('permiso.indexEmpleado'); 
+    Route::get('permisos/empleados/ver/{id}', [PermisoController::class, 'showEmpleado'])->name('permiso.verEmpleado');
+    Route::get('permisos/create/{id}', [PermisoController::class, 'create'])->name('permiso.create');
+    Route::resource('permisos', PermisoController::class);
+
 
     Route::get('memorandums/assign/{id}', [MemorandumController::class, 'assign'])->name('memorandums.assign');
     Route::get('empleadomemorandum/store/{id_Empleado}/{id_Memorandum}',[EmpleadoMemorandumController::class, 'store'])->name('empleadomemorandums.store');

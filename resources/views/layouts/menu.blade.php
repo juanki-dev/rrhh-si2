@@ -33,7 +33,7 @@
                 <a class="nav-link" href="/empleados">Gestionar Empleados</a>
                 <a class="nav-link" href="/memorandums">Gestionar Memorandum</a>
                 <a class="nav-link" href="#">Gestionar Contratos</a>
-                <a class="nav-link" href="#">Gestionar Permisos</a>
+                <a class="nav-link" href="/permisos">Gestionar Permisos</a>
                 <a class="nav-link" href="/vacaciones">Gestionar Vacacion</a>
             </div>
           </li>
@@ -49,6 +49,7 @@
                 <a class="nav-link" href="#">Gestionar Aguinaldos</a>
                 <a class="nav-link" href="#">Gestionar Reportes Planilla</a>
                 <a class="nav-link" href="/bonos">Gestionar Bono</a>
+                <a class="nav-link" href="/descuentos">Gestionar Descuento</a>
             </div>
           </li>
           <li class="nav-item">

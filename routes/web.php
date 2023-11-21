@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('reclutamientos/assign/{id}', [ReclutamientoController::class, 'assign'])->name('reclutamientos.assign');
     Route::get('postulantereclutamiento/store/{idpostulante}/{idreclutamiento}',[PostulanteReclutamientoController::class, 'store2'])->name('postulantereclutamientos.store');
     Route::resource('reclutamientos', ReclutamientoController::class);
+    
     Route::get('permisos/empleados', [PermisoController::class, 'indexEmpleado'])->name('permiso.indexEmpleado'); 
     Route::get('permisos/empleados/ver/{id}', [PermisoController::class, 'showEmpleado'])->name('permiso.verEmpleado');
     Route::get('permisos/create/{id}', [PermisoController::class, 'create'])->name('permiso.create');

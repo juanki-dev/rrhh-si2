@@ -7,11 +7,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h3 class="page__heading">{{ $reclutamiento->nombre }}</h3>
+                            <h3 class="page__heading">{{ $memorandum->nombre }}</h3>
                             <div class = "ml-auto">
                                 <a class="btn btn-success mx-2" id="generateReport">Reporte</a>
-                                <a class="btn btn-success" href="{{ route('reclutamientos.assign', ['id' => $reclutamiento->id]) }}">Asignar</a>
-                                <a class="btn btn-dark" href="{{ route('reclutamientos.index') }}">Atras </a>
+                                <a class="btn btn-success" href="{{ route('memorandums.assign', ['id' => $memorandum->id]) }}">Asignar</a>
+                                <a class="btn btn-dark" href="{{ route('memorandums.index') }}">Atras</a>
                             </div>
                         </div>
                         <div> </div>
@@ -35,11 +35,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($postulante as $postulantes)
+                                    @foreach ($empleado as $empleados)
                                         <tr>
-                                            <td>{{ $postulantes->id }}</td>
-                                            <td>{{ $postulantes->Nombre }}</td>
-                                            <td>{{ $postulantes->Apellido }}</td>
+                                            <td>{{ $empleados->id }}</td>
+                                            <td>{{ $empleados->Nombre }}</td>
+                                            <td>{{ $empleados->Apellido }}</td>
 
                                             <td>
 
@@ -68,13 +68,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($postulante as $postulantes)
+                        @foreach ($empleado as $empleados)
                             <tr>
-                                <td>{{ $postulantes->id }}</td>
-                                <td>{{ $postulantes->Nombre }}</td>
-                                <td>{{ $postulantes->Apellido }}</td>
-                                <td>{{ $postulantes->Email }}</td>
-                                <td>{{ $postulantes->Celular }}</td>
+                                <td>{{ $empleados->id }}</td>
+                                <td>{{ $empleados->Nombre }}</td>
+                                <td>{{ $empleados->Apellido }}</td>
+                                <td>{{ $empleados->Email }}</td>
+                                <td>{{ $empleados->Celular }}</td>
 
                             </tr>
                         @endforeach
@@ -113,7 +113,7 @@
                                             margin: [0, 10],
                                         },
                                         {
-                                            text: "Reporte de Postulantes",
+                                            text: "Reporte de Empleados",
                                             style: "header",
                                             alignment: 'center',
                                         },
@@ -127,12 +127,12 @@
                                                 widths: [15, '*', '*', 'auto', 'auto'],
                                                 body: [
                                                     ["ID", "Nombres", "Apellidos", "E-mail", "Teléfono" ],
-                                                    @foreach ($postulante as $postulantes)
-                                                        ["{{ $postulantes->id }}",
-                                                            "{{ $postulantes->Nombre }}",
-                                                            "{{ $postulantes->Apellido }}",
-                                                            "{{ $postulantes->Email }}",
-                                                            "{{ $postulantes->Celular }}"
+                                                    @foreach ($empleado as $empleados)
+                                                        ["{{ $empleados->id }}",
+                                                            "{{ $empleados->Nombre }}",
+                                                            "{{ $empleados->Apellido }}",
+                                                            "{{ $empleados->Email }}",
+                                                            "{{ $empleados->Celular }}"
                                                         ],
                                                     @endforeach
                                                 ],
@@ -152,12 +152,12 @@
                                     },
                                 };
 
-                                pdfMake.createPdf(pdfDefinition).download("reporte_postulantes.pdf");
+                                pdfMake.createPdf(pdfDefinition).download("reporte_empleados.pdf");
                             } else if (selectedFormat === "excel") {
                                 const data = XLSX.utils.table_to_book(reportTable, {
-                                    sheet: "Postulantes"
+                                    sheet: "Empleados"
                                 });
-                                XLSX.writeFile(data, "reporte_{{ $reclutamiento->nombre }}.xlsx");
+                                XLSX.writeFile(data, "reporte_{{ $memorandum->nombre }}.xlsx");
                             }
                         });
                     });

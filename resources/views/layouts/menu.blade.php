@@ -31,9 +31,9 @@
             <!--Submenu..-->
             <div class="collapse" id="form-elements">
                 <a class="nav-link" href="/empleados">Gestionar Empleados</a>
-                <a class="nav-link" href="#">Gestionar Memorandum</a>
+                <a class="nav-link" href="/memorandums">Gestionar Memorandum</a>
                 <a class="nav-link" href="#">Gestionar Contratos</a>
-                <a class="nav-link" href="#">Gestionar Permisos</a>
+                <a class="nav-link" href="/permisos">Gestionar Permisos</a>
                 <a class="nav-link" href="/vacaciones">Gestionar Vacacion</a>
             </div>
           </li>

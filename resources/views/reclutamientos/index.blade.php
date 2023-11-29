@@ -37,7 +37,7 @@
                                     <td>{{ date('d-m-Y', strtotime($reclutamientos->fechafin)) }}</td>                                  
                                   
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route('reclutamientos.show', $reclutamientos) }}">Ver</a>
+                                        <a class="btn btn-success" href="{{ route('reclutamientos.show', $reclutamientos) }}">Ver</a>
                                         <a class="btn btn-primary" href="{{ route('reclutamientos.edit', $reclutamientos->id) }}">Editar</a>
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['reclutamientos.destroy', $reclutamientos->id], 'style' => 'display:inline']) !!}
                                         {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}

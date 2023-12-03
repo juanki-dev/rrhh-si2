@@ -23,7 +23,7 @@
                             </tr>
                             <tr>
                                 <th>Nombre:</th>
-                                <td>{{ $departamento->name }}</td>
+                                <td>{{ $departamento->Nombre }}</td>
                             </tr>
                         </tbody>
                     </table>

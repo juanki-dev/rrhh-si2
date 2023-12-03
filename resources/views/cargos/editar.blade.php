@@ -21,6 +21,17 @@
                             <input type="text" class="form-control" id="Descripcion" name="Descripcion" value="{{ $cargo->Descripcion }}">
                         </div>
 
+                        <div class="form-group">
+                            <label for="idDepartamento">Seleccionar Cargo</label>
+                            <select name="idDepartamento" class="form-control" id="idDepartamento">
+                                @foreach ($departamentos as $dep)
+                                    <option value="{{ $dep->id }}" {{ $dep->id == $cargo->idDepartamento ? 'selected' : '' }}>
+                                        {{ $dep->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
                         <div class="my-4">
                             <button type="submit" class="btn btn-primary mr-2">Guardar</button>
                             <a class="btn btn-light" href="{{ route('cargos.index') }}">Cancelar</a>

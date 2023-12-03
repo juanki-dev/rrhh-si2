@@ -11,6 +11,12 @@ class Cargo extends Model
     protected $fillable = [
         'Nombre',
         'Descripcion',
+        'idDepartamento',
     ];
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'idDepartamento');
+    }
 
 }

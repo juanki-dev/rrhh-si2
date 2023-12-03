@@ -69,7 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('permisos/empleados/ver/{id}', [PermisoController::class, 'showEmpleado'])->name('permiso.verEmpleado');
     Route::get('permisos/create/{id}', [PermisoController::class, 'create'])->name('permiso.create');
     Route::resource('permisos', PermisoController::class);
-
+    Route::resource('entrevistas', EntrevistaController::class);
+    Route::resource('horarios', HorarioController::class);
 
     Route::get('memorandums/assign/{id}', [MemorandumController::class, 'assign'])->name('memorandums.assign');
     Route::get('empleadomemorandum/store/{id_Empleado}/{id_Memorandum}',[EmpleadoMemorandumController::class, 'store'])->name('empleadomemorandums.store');

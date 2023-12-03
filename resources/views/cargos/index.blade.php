@@ -16,19 +16,18 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>Acciones</th>
+                                    <th>Departamento</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cargo as $cargos)
+                                @foreach ($cargodepartamentos as $carg)
                                 <tr>
-                                    <td>{{ $cargos->id }}</td>
-                                    <td>{{ $cargos->Nombre }}</td>
-                                    <td>{{ $cargos->Descripcion }}</td>
+                                    <td>{{ $carg->idCargo }}</td>
+                                    <td>{{ $carg->nombreCargo }}</td>
+                                    <td>{{ $carg->nombreDepartamento }}</td>
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route('cargos.edit', $cargos->id) }}">Editar</a>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['cargos.destroy', $cargos->id], 'style' => 'display:inline']) !!}
+                                        <a class="btn btn-primary" href="{{ route('cargos.edit', $carg->idCargo) }}">Editar</a>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['cargos.destroy', $carg->idCargo], 'style' => 'display:inline']) !!}
                                         {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
                                     </td>

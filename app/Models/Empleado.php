@@ -14,6 +14,7 @@ class Empleado extends Model
         'Apellido',
         'Email',
         'Celular',
+        'idContrato',
         'idCargo'
     ];
 

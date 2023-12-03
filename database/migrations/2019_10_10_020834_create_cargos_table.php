@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre', 100);
             $table->string('Descripcion', 100);
+            $table->unsignedBigInteger('idDepartamento');
             $table->timestamps();
+
+            $table->foreign('idDepartamento')
+            ->references('id')
+            ->on('departamentos')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

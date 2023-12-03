@@ -4,87 +4,73 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Horario;
-use App\Models\Empleado;
-use App\Models\Cargo;
+
 use Spatie\Activitylog\Models\Activity;
 class HorarioController extends Controller
 {
     public function index(Request $request)
     {   
         $horario = Horario::All();
-        $empleado = Empleado::All();
-        $cargo  = Cargo::All();
-        return view('horarios.index', compact('horario','empleado','cargo'));
+        return view('horarios.index', compact('horario'));
     }
 
     public function create()
     {   
-        $horario = Horario::All();
-        $empleado = Empleado::All();
-        $cargo  = Cargo::All();
-        return view('horarios.crear',compact('horario','empleado','cargo'));
+        return view('horarios.crear');
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'HoraEntrada'=>'required',
-            'HoraSalida'=>'required',
-            'idEmpleado'=>'required',
-            'idCargo'=>'required',
+            'hora_ini'=>'required',
+            'hora_fin'=>'required',
         ]);
 
-        $horario = Horario::create($request->all());
-        $empleado  = Empleado::All();
-        $cargo  = Cargo::All();
+        $horario3 = new Horario();
+        $horario3->hora_ini = $request->input('hora_ini');
+        $horario3->hora_fin = $request->input('hora_fin');
+        $horario3->save();
+
+        /* $horario = Horario::create($request->all()); */
         date_default_timezone_set("America/La_Paz");
         activity()->useLog('Horarios')->log('Registró')->subject();
         $lastActivity=Activity::all()->last();
-        $lastActivity->subject_id= $horario->id;
+        $lastActivity->subject_id= $horario3->id;
         $lastActivity->save();
 
-        return redirect()->route('horarios.index',compact('empleado','cargo'));
+        $horarios = Horario::All();
+        return redirect()->route('horarios.index',compact('horarios'));
     }
-
-
-
 
     public function edit($id)
     {
         $horario = Horario::find($id);
-        $empleado  = Empleado::All();
-        $cargo  = Cargo::All();
         date_default_timezone_set("America/La_Paz");
         activity()->useLog('Horario')->log('Editó')->subject();
         $lastActivity=Activity::all()->last();
         $lastActivity->subject_id= $horario->id;
         $lastActivity->save();
-        return view('horarios.editar', compact('horario','cargo','empleado'));
+        return view('horarios.editar', compact('horario'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'HoraEntrada'=>'required',
-            'HoraSalida'=>'required',
-            'idEmpleado'=>'required',
-            'idCargo'=>'required',
+            'hora_ini'=>'required',
+            'hora_fin'=>'required',
         ]);
 
         $input = $request->all();
         $horario = Horario::find($id);
         $horario->update($input);
-        $empleado  = Empleado::All();
-        $cargo  = Cargo::All();
-        return redirect()->route('horarios.index',compact('horario','empleado','cargo'));
+        $horarios = Horario::All();
+        return redirect()->route('horarios.index',compact('horarios'));
     }
 
 
     public function destroy($id)
     {
         $horario = Horario::find($id);
-        $empleado = Empleado::All();
-        $cargo = Cargo::All();
         if ($horario) {
             date_default_timezone_set("America/La_Paz");
             activity()->useLog('Horario')->log('Eliminó')->subject();
@@ -94,8 +80,10 @@ class HorarioController extends Controller
             $lastActivity->save();
             $horario->delete();
         } else {
-            return redirect()->route('horarios.index',compact('horario','empleado','cargo'))->with('error', 'Horario no Encontrada');
+            $horarioselse = Horario::all();
+            return redirect()->route('horarios.index',compact('horarios'))->with('error', 'Horario no Encontrado');
         }
-        return redirect()->route('horarios.index',compact('horario','empleado','cargo'));
+        $horarios = Horario::All();
+        return redirect()->route('horarios.index',compact('horarios'));
     }
 }

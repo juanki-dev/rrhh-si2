@@ -18,6 +18,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Gómez',
     'Email' => 'roberto.gomez@example.com',
     'Celular' => '76669988',
+    'idContrato'=>'1',
     'idCargo'=>'1',
 ]);
 
@@ -27,6 +28,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'López',
     'Email' => 'maria.lopez@example.com',
     'Celular' => '71112233',
+    'idContrato'=>'2',
     'idCargo'=>'3',
 ]);
 
@@ -36,6 +38,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Hernández',
     'Email' => 'pedro.hernandez@example.com',
     'Celular' => '79998877',
+    'idContrato'=>'3',
     'idCargo'=>'2',
 ]);
 
@@ -45,6 +48,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Martínez',
     'Email' => 'laura.martinez@example.com',
     'Celular' => '68887766',
+    'idContrato'=>'4',
     'idCargo'=>'4',
 ]);
 
@@ -54,6 +58,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Fernández',
     'Email' => 'miguel.fernandez@example.com',
     'Celular' => '75556644',
+    'idContrato'=>'5',
     'idCargo'=>'6',
 ]);
 
@@ -63,6 +68,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Sánchez',
     'Email' => 'isabel.sanchez@example.com',
     'Celular' => '76665544',
+    'idContrato'=>'6',
     'idCargo'=>'7',
 ]);
 
@@ -72,6 +78,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'García',
     'Email' => 'luis.garcia@example.com',
     'Celular' => '73332211',
+    'idContrato'=>'7',
     'idCargo'=>'8',
 ]);
 
@@ -81,6 +88,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Rodríguez',
     'Email' => 'ana.rodriguez@example.com',
     'Celular' => '74331122',
+    'idContrato'=>'8',
     'idCargo'=>'9',
 ]);
 
@@ -90,6 +98,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'Pérez',
     'Email' => 'javier.perez@example.com',
     'Celular' => '77778899',
+    'idContrato'=>'9',
     'idCargo'=>'10',
 ]);
 
@@ -99,6 +108,7 @@ DB::table('empleados')->insert([
     'Apellido' => 'López',
     'Email' => 'elena.lopez@example.com',
     'Celular' => '72223344',
+    'idContrato'=>'10',
     'idCargo'=>'1',
 ]);
 

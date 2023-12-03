@@ -5,20 +5,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cargo;
+use App\Models\Departamento;
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Support\Facades\DB;
 
 
 class CargoController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $cargo = Cargo::All();
-        return view('cargos.index', compact('cargo'));
+        $cargodepartamentos = DB::table('cargos')
+    ->join('departamentos', 'cargos.idDepartamento', '=', 'departamentos.id')
+    ->select('cargos.id as idCargo', 'cargos.Nombre as nombreCargo', 'departamentos.id AS idDepartamento', 'departamentos.Nombre AS nombreDepartamento')
+    ->orderBy('nombreDepartamento')
+    ->get();
+
+        return view('cargos.index', compact('cargodepartamentos'));
     }
 
     public function create()
     {
-        return view('cargos.crear');
+        $departamentos = Departamento::all();
+        return view('cargos.crear', compact('departamentos'));
     }
 
     public function store(Request $request)
@@ -26,6 +34,7 @@ class CargoController extends Controller
         $this->validate($request, [
             'Nombre' => 'required',
             'Descripcion' => 'required',
+            'idDepartamento' => 'required',
         ]);
 
         $cargo = Cargo::create($request->all());
@@ -45,13 +54,13 @@ class CargoController extends Controller
     public function edit($id)
     {
         $cargo = Cargo::find($id);
-
+        $departamentos = Departamento::all();
         date_default_timezone_set("America/La_Paz");
         activity()->useLog('Cargo')->log('Editó')->subject();
         $lastActivity=Activity::all()->last();
         $lastActivity->subject_id= $cargo->id;
         $lastActivity->save();
-        return view('cargos.editar', compact('cargo'));
+        return view('cargos.editar', compact('cargo', 'departamentos'));
     }
 
     public function update(Request $request, $id)

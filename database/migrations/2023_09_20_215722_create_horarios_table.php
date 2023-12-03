@@ -13,23 +13,9 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->time('HoraEntrada');
-            $table->time('HoraSalida');
-            $table->unsignedBigInteger('idEmpleado');
-            $table->unsignedBigInteger('idCargo');
+            $table->time('hora_ini');
+            $table->time('hora_fin');
             $table->timestamps();
-
-            $table->foreign('idEmpleado')
-            ->references('id')
-            ->on('empleados')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
-            $table->foreign('idCargo')
-            ->references('id')
-            ->on('cargos')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 

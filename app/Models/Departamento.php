@@ -22,7 +22,11 @@ class Departamento extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'Nombre',
     ];
+    public function cargo()
+    {
+        return $this->hasMany(Cargo::class, 'idDepartamento', 'id');
+    }
 }
 

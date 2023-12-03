@@ -31,6 +31,7 @@ class EmpleadoController extends Controller
             'Apellido' => 'required',
             'Email' => 'required',
             'Celular' => 'required',
+            'idContrato'=>'required',
             'idCargo'=>'required',
         ]);
 
@@ -67,6 +68,7 @@ class EmpleadoController extends Controller
             'Apellido' => 'required',
             'Email' => 'required|email',
             'Celular' => 'required',
+            'idContrato'=>'required',
             'idCargo'=>'required',
         ]);
 

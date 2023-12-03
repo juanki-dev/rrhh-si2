@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('departamentos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('Nombre');
             $table->rememberToken();
             $table->timestamps();
         });

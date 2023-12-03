@@ -28,6 +28,14 @@
                         <label for="Descripcion">Descripción</label>
                         {!! Form::text('Descripcion', null, array('class' => 'form-control', 'id' => 'Descripcion')) !!}
                     </div>
+                    <div class="form-group">
+                        <label for="idDepartamento">Seleccionar Cargo</label>
+                        <select name="idDepartamento" class="form-control" id="idDepartamento">
+                            @foreach ($departamentos as $dep)
+                            <option value="{{ $dep->id }}">{{ $dep->Nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Guardar</button>
                     {!! Form::close() !!}
                 </div>

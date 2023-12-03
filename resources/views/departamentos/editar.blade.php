@@ -12,8 +12,8 @@
                         @method('PATCH')
 
                         <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $departamento->name }}">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" class="form-control" id="Nombre" name="Nombre" value="{{ $departamento->Nombre }}">
                         </div>
 
                         <div class="my-4">

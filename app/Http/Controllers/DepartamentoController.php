@@ -29,7 +29,7 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'Nombre' => 'required',
         ]);
 
         $input = $request->all();
@@ -62,7 +62,7 @@ class DepartamentoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'Nombre' => 'required',
         ]);
 
         $input = $request->all();

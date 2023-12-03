@@ -18,7 +18,14 @@ return new class extends Migration
             $table->string('Email', 100)->nullable();
             $table->integer('Celular');
             $table->unsignedBigInteger('idCargo');
+            $table->unsignedBigInteger('idContrato');
             $table->timestamps();
+            
+            $table->foreign('idContrato')
+            ->references('id')
+            ->on('contratos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             $table->foreign('idCargo')
             ->references('id')

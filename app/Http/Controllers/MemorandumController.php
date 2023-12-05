@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Memorandum;
-use App\Models\EmpleadoMemorandum;
 use App\Models\Empleado;
+use App\Models\Cargo;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+use Carbon\Carbon;
 
 use Spatie\Activitylog\Models\Activity;
 use PDF;
@@ -15,114 +17,112 @@ use PDF;
 class MemorandumController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index()
     {
-        $memorandum = Memorandum::All();
-        return view('memorandums.index', compact('memorandum') );
+        $memorandums = DB::table('memorandums')
+            ->join('empleados', 'memorandums.idEmpleado', '=', 'empleados.id')
+            ->select('memorandums.*', 'empleados.Nombre', 'empleados.Apellido')
+            ->get();
+        return view('memorandums.index', compact('memorandums'));
+    }
+    
+    public function indexEmpleado()
+    {
+        $empleado = Empleado::All();
+        $cargo  = Cargo::All();
+        return view('memorandums.indexEmpleado', compact('empleado', 'cargo'));
     }
 
-    public function create()
+    public function showEmpleado($empleadoId)
     {
-        return view('memorandums.crear');
+        $memorandums = Memorandum::where('idEmpleado', $empleadoId)->get();
+        // dd($memorandums);
+        $empleados = Empleado::where('id', $empleadoId)->first(); //solo para una fila
+        return view('memorandums.showEmpleado', compact('memorandums', 'empleados'));
     }
+
+    public function create($empleadoId)
+    {
+        return view('memorandums.crear', compact('empleadoId'));
+    }
+
+    
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subject' => 'required',
-            'body' => 'required',
-            'date' => 'required',
-            'time' => 'required',
+            'asunto' => 'required',
+            'contenido' => 'required',
+            // 'fecha' => 'required',
+            // 'hora' => 'required',
         ]);
 
-        $memorandum = Memorandum::create($request->all());
+        /////////////////////////////////////////////
+        $boliviaTime = Carbon::now('America/La_Paz');
+        $fecha = $boliviaTime->toDateString();
+        $hora = $boliviaTime->toTimeString();
+        /////////////////////////////////////////////
+        $memorandum = new Memorandum();
+        $memorandum->fecha = $fecha;
+        $memorandum->hora =  $hora;
+        $memorandum->asunto = $request->input('asunto');
+        $memorandum->contenido = $request->input('contenido');
+        $memorandum->idEmpleado = $request->input('empleadoId');
+        $memorandum->save();
 
-        date_default_timezone_set("America/La_Paz");
-        activity()->useLog('Memorandum')->log('Registró')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = $memorandum->id;
-        $lastActivity->save();
-
-        return redirect()->route('memorandums.index');
-    }
-
-    public function edit($id)
-    {
-        $memorandum = Memorandum::find($id);
-        date_default_timezone_set("America/La_Paz");
-        activity()->useLog('Memorandum')->log('Editó')->subject();
-        $lastActivity = Activity::all()->last();
-        $lastActivity->subject_id = $memorandum->id;
-        $lastActivity->save();
-        return view('memorandums.editar', compact('memorandum'));
-    }
-
-
-    public function show($id)
-    {
-        $empleado = DB::table('empleados_memorandums')
-            ->join('empleados', 'empleados_memorandums.id_Empleado', '=', 'empleados.id')
-            ->where('empleados_memorandums.id_Memorandum', '=', $id)
-            ->select('empleados.*')
-            ->get();
-
-        $memorandum = Memorandum::find($id);
-
-        return view('memorandums.verempleados', compact('empleado', 'memorandum'));
-    }
-
-    public function assign($id)
-    {
-        $memorandum = Memorandum::find($id);
-        $listaEmpleados = $this->getUnassignedEmpleados($memorandum);
-        return view('memorandums.asignarempleado', compact('listaEmpleados', 'memorandum'));
-
-    }
-
-    public function getUnassignedEmpleados(Memorandum $memorandum)
-    {
-        $id = $memorandum->id;
-        $noempleados = DB::table('empleados')
-            ->leftJoin('empleados_memorandums', function ($join) use ($id) {
-                $join->on('empleados.id', '=', 'empleados_memorandums.id_Empleado')
-                    ->where('empleados_memorandums.id_Memorandum', '=', $id);
-            })
-            ->whereNull('empleados_memorandums.id_Empleado')
-            ->select('empleados.*')
-            ->get();
-        return $noempleados;        
+        $this->addBitacora("Memorandum", "Registró");
+        return redirect()->route('memorandum.indexEmpleado');
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'subject' => 'required',
-            'body' => 'required',
-            'date' => 'required',
-            'time' => 'required',
+            'asunto' => 'required',
+            'contenido' => 'required',
         ]);
-
-        $input = $request->all();
+        
         $memorandum = Memorandum::find($id);
-        $memorandum->update($input);
+        $memorandum->asunto = $request->input('asunto');
+        $memorandum->contenido = $request->input('contenido');
+        $memorandum->save();
+
+        $this->addBitacora("Memorandum", "Editó");
         return redirect()->route('memorandums.index');
     }
 
+    public function show($id)
+    {
+        $memorandum = DB::table('memorandums')
+            ->join('empleados', 'memorandums.idEmpleado', '=', 'empleados.id')
+            ->select('memorandums.*', 'empleados.Nombre', 'empleados.Apellido')
+            ->where('memorandums.id', $id)
+            ->first();
+        
+        return view('memorandums.show', compact('memorandum'));
+    }
+
+    public function edit($id)
+    {
+        $memorandums = Memorandum::find($id);
+        return view('memorandums.editar', compact('memorandums'));
+    }
 
     public function destroy($id)
     {
         $memorandum = Memorandum::find($id);
+
         if ($memorandum) {
-            date_default_timezone_set("America/La_Paz");
-            activity()->useLog('Memorandum')->log('Eliminó')->subject();
-            $lastActivity = Activity::latest()->first();
-            $subjectId = $memorandum->id;
-            $lastActivity->subject_id = $subjectId;
-            $lastActivity->save();
             $memorandum->delete();
-        } else {
-            return redirect()->route('memorandums.index')->with('error', 'Memorandum no encontrado');
+            $this->addBitacora("Memorandum", "Eliminó");
         }
+
         return redirect()->route('memorandums.index');
     }
+
+    public function addBitacora($tabla, $accion)
+    {
+        date_default_timezone_set("America/La_Paz");
+        activity()->useLog($tabla)->log($accion)->subject();
+    }
+
 }

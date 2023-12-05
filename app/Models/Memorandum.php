@@ -10,10 +10,14 @@ class Memorandum extends Model
     use HasFactory;
     protected $table = 'memorandums';
     protected $fillable = [
-        'subject',
-        'body',
-        'date',
-        'time',
+        'asunto',
+        'contenido',
+        'fecha',
+        'hora',
+        'idEmpleado',
     ];
-
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'idEmpleado', 'id');
+    }
 }

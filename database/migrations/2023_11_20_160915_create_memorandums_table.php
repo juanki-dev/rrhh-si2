@@ -14,10 +14,18 @@ return new class extends Migration
         Schema::create('memorandums', function (Blueprint $table) {
             
             $table->id();
-            $table->string('subject');//asunto
-            $table->text('body');//Content of memorandum
-            $table->date('date');
-            $table->time('time');
+            $table->string('asunto', 70);
+            $table->text('contenido');
+            $table->date('fecha');
+            $table->time('hora');
+            $table->unsignedBigInteger('idEmpleado');
+
+            $table->foreign('idEmpleado')
+            ->references('id')
+            ->on('empleados')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

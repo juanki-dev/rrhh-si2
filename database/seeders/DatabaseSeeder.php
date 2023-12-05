@@ -24,11 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CargoSeeder::class);
         $this->call(EmpleadoSeeder::class);
         $this->call(PostulanteSeeder::class);
-        
         $this->call(ReclutamientoSeeder::class);
-        
-        
-    
+        $this->call(MemorandumSeeder::class);
        
     }
 }

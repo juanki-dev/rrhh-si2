@@ -6,23 +6,28 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
 use Faker\Factory as Faker;//Este paquete ayuda a generar datos aleatorios
+use App\Models\Empleado;    
 
-class MemorandumsTableSeeder extends Seeder
+class MemorandumSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
         $faker = Faker::create();
 
         foreach (range(1, 10) as $index) {
+            // Obtener un id de empleado existente
+            $idEmpleado = Empleado::inRandomOrder()->first()->id;
+
             DB::table('memorandums')->insert([
-                'subject' => $faker->sentence,
-                'body' => $faker->paragraph,
-                'date' => $faker->date,
-                'time' => $faker->time,
+                'asunto' => $faker->sentence,
+                'contenido' => $faker->paragraph,
+                'fecha' => $faker->date,
+                'hora' => $faker->time,
+                'idEmpleado' => $idEmpleado, // Asignar un id de empleado existente
+
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

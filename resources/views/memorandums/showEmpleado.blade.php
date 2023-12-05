@@ -23,6 +23,7 @@
             </div>
 
             <!-- Añade una tabla oculta para el informe -->
+            {{-- Esta tabla va al excel --}}
             <table id="reportTable" class="table" style="display: none;">
                 <thead>
                     <tr>

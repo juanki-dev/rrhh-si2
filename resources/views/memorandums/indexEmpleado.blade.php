@@ -29,10 +29,12 @@
                                             <td>{{ $empleados->Nombre }}</td>
                                             <td>{{ $empleados->Apellido }}</td>
                                             <td>
-                                                @foreach ($cargo as $cargos)
-                                                    @if ($cargos->id == $empleados->idCargo)
-                                                        {{ $cargos->Nombre }}
-                                                    @endif
+                                                @foreach ($contrato as $contratos)
+                                                    @foreach($cargo as $cargos)
+                                                        @if ($contratos->idCargo == $cargos->id && $contratos->idEmpleado == $empleados->id)
+                                                            {{ $cargos->Nombre }}
+                                                        @endif
+                                                    @endforeach
                                                 @endforeach
                                             </td>                
                                             <td>

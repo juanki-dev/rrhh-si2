@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Memorandum;
 use App\Models\Empleado;
 use App\Models\Cargo;
+use App\Models\Contrato;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -29,8 +30,9 @@ class MemorandumController extends Controller
     public function indexEmpleado()
     {
         $empleado = Empleado::All();
-        $cargo  = Cargo::All();
-        return view('memorandums.indexEmpleado', compact('empleado', 'cargo'));
+        $contrato = Contrato::All();
+        $cargo = Cargo::All();
+        return view('memorandums.indexEmpleado', compact('empleado', 'contrato', 'cargo'));
     }
 
     public function showEmpleado($empleadoId)

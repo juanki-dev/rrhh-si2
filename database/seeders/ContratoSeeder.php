@@ -13,84 +13,119 @@ class ContratoSeeder extends Seeder
      */
     public function run(): void
     {   //1
-        DB::table('contratos')->insert([
-            'sueldo' => '1000',
-            'fecha_inicio' => '2021-01-01',
-            'fecha_fin' => '2024-01-31',
-            'cargo' => 'Gerente',
-            'idHorario' => '1',
+       DB::table('contratos')->insert([
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'fecha_fin' => '2022-10-21',
+            'tipo' => 'Temporal',
+            'tipo_pago' => 'Mensual',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 1,
+            'idCargo' => 1,
         ]);
         //2
         DB::table('contratos')->insert([
-            'sueldo' => '800',
-            'fecha_inicio' => '2021-02-01',
-            'fecha_fin' => '2024-02-28',
-            'cargo' => 'Jefe',
-            'idHorario' => '2',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'fecha_fin' => '2022-10-21',
+            'tipo' => 'Temporal',
+            'tipo_pago' => 'Quincenal',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 2,
+            'idCargo' => 2,
         ]);
         //3
         DB::table('contratos')->insert([
-            'sueldo' => '600',
-            'fecha_inicio' => '2021-03-01',
-            'fecha_fin' => '2024-03-31',
-            'cargo' => 'Asistente',
-            'idHorario' => '3',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'fecha_fin' => '2022-10-21',
+            'tipo' => 'Temporal',
+            'tipo_pago' => 'Semanal',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 3,
+            'idCargo' => 3,
         ]);
         //4
         DB::table('contratos')->insert([
-            'sueldo' => '500',
-            'fecha_inicio' => '2021-04-01',
-            'fecha_fin' => '2024-04-30',
-            'cargo' => 'Asistente',
-            'idHorario' => '4',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'fecha_fin' => '2022-10-21',
+            'tipo' => 'Temporal',
+            'tipo_pago' => 'Diario',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 4,
+            'idCargo' => 4,
         ]);
         //5
         DB::table('contratos')->insert([
-            'sueldo' => '400',
-            'fecha_inicio' => '2021-05-01',
-            'fecha_fin' => '2024-05-31',
-            'cargo' => 'Asistente',
-            'idHorario' => '5',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Hora',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 5,
+            'idCargo' => 5,
         ]);
         //6
         DB::table('contratos')->insert([
-            'sueldo' => '300',
-            'fecha_inicio' => '2021-06-01',
-            'fecha_fin' => '2024-06-30',
-            'cargo' => 'Asistente',
-            'idHorario' => '6',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Mensual',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 6,
+            'idCargo' => 6,
         ]);
         //7
         DB::table('contratos')->insert([
-            'sueldo' => '200',
-            'fecha_inicio' => '2021-07-01',
-            'fecha_fin' => '2024-07-31',
-            'cargo' => 'Asistente',
-            'idHorario' => '7',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Quincenal',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 7,
+            'idCargo' => 7,
         ]);
         //8
         DB::table('contratos')->insert([
-            'sueldo' => '100',
-            'fecha_inicio' => '2023-08-01',
-            'fecha_fin' => '2024-08-31',
-            'cargo' => 'Asistente',
-            'idHorario' => '8',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Semanal',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 8,
+            'idCargo' => 8,
         ]);
         //9
         DB::table('contratos')->insert([
-            'sueldo' => '1000',
-            'fecha_inicio' => '2022-09-01',
-            'fecha_fin' => '2024-09-30',
-            'cargo' => 'Gerente',
-            'idHorario' => '9',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Diario',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 9,
+            'idCargo' => 9,
         ]);
         //10
         DB::table('contratos')->insert([
-            'sueldo' => '800',
-            'fecha_inicio' => '2022-10-01',
-            'fecha_fin' => '2024-10-31',
-            'cargo' => 'Jefe',
-            'idHorario' => '10',
+            'sueldo' => 1000,
+            'fecha_inicio' => '2021-10-21',
+            'tipo' => 'Indefinido',
+            'tipo_pago' => 'Hora',
+            'estado' => 'Activo',
+            'idHorario' => 1,
+            'idEmpleado' => 10,
+            'idCargo' => 10,
         ]);
+        
     }
 }

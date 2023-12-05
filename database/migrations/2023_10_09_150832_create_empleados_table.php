@@ -15,23 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('Nombre', 100);
             $table->string('Apellido', 100)->nullable();
+            $table->string('CI')->unique();
             $table->string('Email', 100)->nullable();
-            $table->integer('Celular');
-            $table->unsignedBigInteger('idCargo');
-            $table->unsignedBigInteger('idContrato');
-            $table->timestamps();
-            
-            $table->foreign('idContrato')
-            ->references('id')
-            ->on('contratos')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->string('Celular')->nullable();
+            $table->string('Direccion', 100)->nullable();
+            $table->date('FechaNacimiento')->nullable();
+            $table->string('PaisNacimiento', 100)->nullable();
+            $table->string('CiudadNacimiento', 100)->nullable();
+            $table->string('Sexo',20)->nullable();
+            $table->string('EstadoCivil',20)->nullable();
+            $table->string('Profesion',60)->nullable();
+            $table->string('Estado',20)->nullable();
 
-            $table->foreign('idCargo')
-            ->references('id')
-            ->on('cargos')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->timestamps();
         });
 
     }

@@ -12,17 +12,25 @@ class Empleado extends Model
     protected $fillable = [
         'Nombre',
         'Apellido',
+        'CI',
         'Email',
         'Celular',
-        'idContrato',
-        'idCargo'
+        'Direccion',
+        'FechaNacimiento',
+        'PaisNacimiento',
+        'CiudadNacimiento',
+        'Sexo',
+        'EstadoCivil',
+        'Profesion',
+        'Estado',
     ];
 
     public function usuario(){
         return $this->hasOne('App\Models\User','id','idUser');
     }
-    public function cargo()
+    public function contratos()
     {
-        return $this->hasOne('App\Models\Cargo', 'id', 'idCargo');
+        return $this->hasMany(Contrato::class, 'idEmpleado');
     }
+  
 }

@@ -15,14 +15,27 @@ return new class extends Migration
             $table->id();
             $table->float('sueldo');
             $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->string('cargo');
-            $table->boolean('estado')->default(true);
+            $table->date('fecha_fin')->nullable();
+            $table->string('tipo');
+            $table->string('tipo_pago');
+            $table->string('estado');
             $table->unsignedBigInteger('idHorario')->nullable();
-            
+            $table->unsignedBigInteger('idEmpleado')->nullable();
+            $table->unsignedBigInteger('idCargo')->nullable();
+
             $table->foreign('idHorario')->references('id')
             ->on('horarios')
-            ->onDelete('cascade')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->foreign('idEmpleado')->references('id')
+            ->on('empleados')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->foreign('idCargo')->references('id')
+            ->on('cargos')
+            ->onDelete('set null')
             ->onUpdate('cascade');
 
             $table->timestamps();

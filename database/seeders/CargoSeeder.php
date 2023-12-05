@@ -23,7 +23,7 @@ class CargoSeeder extends Seeder
             'Descripcion' => 'Supervisa la producción y operaciones de la empresa',
             'idDepartamento' => '3',
         ]);
-
+        
         // Cargo 3
         DB::table('cargos')->insert([
             'Nombre' => 'Coordinador de Ventas',

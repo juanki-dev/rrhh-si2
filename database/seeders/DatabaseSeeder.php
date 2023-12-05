@@ -18,17 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(DepartamentoSeeder::class);
         $this->call(HorarioSeeder::class);
-        $this->call(ContratoSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CargoSeeder::class);
         $this->call(EmpleadoSeeder::class);
-        $this->call(PostulanteSeeder::class);
-        
+        $this->call(ContratoSeeder::class);
+        $this->call(PostulanteSeeder::class);        
         $this->call(ReclutamientoSeeder::class);
         
         
-    
-       
     }
 }

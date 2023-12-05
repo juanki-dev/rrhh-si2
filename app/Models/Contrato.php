@@ -12,8 +12,11 @@ class Contrato extends Model
         'sueldo',
         'fecha_inicio',
         'fecha_fin',
-        'cargo',
+        'tipo',
+        'tipo_pago',
         'estado',
+        'idCargo',
+        'idEmpleado',
         'idHorario',
     ];
 }

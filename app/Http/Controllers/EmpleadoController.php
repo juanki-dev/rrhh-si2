@@ -6,22 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Cargo;
 use Spatie\Activitylog\Models\Activity;
-use PDF; 
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 
 class EmpleadoController extends Controller
 {
     public function index(Request $request)
     {
-        $empleado = Empleado::All();
-        $cargo  = Cargo::All();
-        return view('empleados.index', compact('empleado','cargo'));
+      /*   $empleadosConCargo = DB::table('empleados')
+            ->join('contratos', 'empleados.id', '=', 'contratos.idEmpleado')
+            ->join('cargos', 'contratos.idCargo', '=', 'cargos.id')
+            ->select('empleados.*', 'cargos.Nombre as Cargo')
+            ->get();
+         */
+        $empleadosConCargo = Empleado::All();
+        return view('empleados.index', compact('empleadosConCargo'));
     }
 
     public function create()
-    {   
-        $cargo  = Cargo::All();
-        return view('empleados.crear',compact('cargo'));
+    {
+        return view('empleados.crear');
     }
 
     public function store(Request $request)
@@ -29,36 +34,39 @@ class EmpleadoController extends Controller
         $this->validate($request, [
             'Nombre' => 'required',
             'Apellido' => 'required',
+            'CI' => 'required|unique:empleados',
             'Email' => 'required',
             'Celular' => 'required',
-            'idContrato'=>'required',
-            'idCargo'=>'required',
+            'Direccion' => 'required',
+            'FechaNacimiento' => 'required',
+            'PaisNacimiento' => 'required',
+            'CiudadNacimiento' => 'required',
+            'Sexo' => 'required',
+            'EstadoCivil' => 'required',
+            'Profesion' => 'required',
+            'Estado' => 'required',
         ]);
 
         $empleado = Empleado::create($request->all());
         $cargo  = Cargo::All();
         date_default_timezone_set("America/La_Paz");
         activity()->useLog('Empleado')->log('Registró')->subject();
-        $lastActivity=Activity::all()->last();
-        $lastActivity->subject_id= $empleado->id;
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = $empleado->id;
         $lastActivity->save();
 
-        return redirect()->route('empleados.index',compact('cargo'));
+        return redirect()->route('empleados.index', compact('cargo'));
     }
-
-
-
 
     public function edit($id)
     {
         $empleado = Empleado::find($id);
-        $cargo  = Cargo::All();
         date_default_timezone_set("America/La_Paz");
         activity()->useLog('Empleado')->log('Editó')->subject();
-        $lastActivity=Activity::all()->last();
-        $lastActivity->subject_id= $empleado->id;
+        $lastActivity = Activity::all()->last();
+        $lastActivity->subject_id = $empleado->id;
         $lastActivity->save();
-        return view('empleados.editar', compact('empleado','cargo'));
+        return view('empleados.editar', compact('empleado'));
     }
 
     public function update(Request $request, $id)
@@ -66,17 +74,24 @@ class EmpleadoController extends Controller
         $this->validate($request, [
             'Nombre' => 'required',
             'Apellido' => 'required',
-            'Email' => 'required|email',
+            'CI' => 'required',
+            'Email' => 'required',
             'Celular' => 'required',
-            'idContrato'=>'required',
-            'idCargo'=>'required',
+            'Direccion' => 'required',
+            'FechaNacimiento' => 'required',
+            'PaisNacimiento' => 'required',
+            'CiudadNacimiento' => 'required',
+            'Sexo' => 'required',
+            'EstadoCivil' => 'required',
+            'Profesion' => 'required',
+            'Estado' => 'required',
         ]);
 
         $input = $request->all();
         $empleado = Empleado::find($id);
         $empleado->update($input);
         $cargo  = Cargo::All();
-        return redirect()->route('empleados.index',compact('cargo'));
+        return redirect()->route('empleados.index', compact('cargo'));
     }
 
 
@@ -93,16 +108,13 @@ class EmpleadoController extends Controller
             $lastActivity->save();
             $empleado->delete();
         } else {
-            return redirect()->route('empleados.index',compact('cargo'))->with('error', 'Empleado no encontrado');
+            return redirect()->route('empleados.index', compact('cargo'))->with('error', 'Empleado no encontrado');
         }
-        return redirect()->route('empleados.index',compact('cargo'));
+        return redirect()->route('empleados.index', compact('cargo'));
     }
     public function downloadPDF(Empleado $empleado)
     {
         $pdf = PDF::loadView('empleados.pdf', compact('empleado')); // Vista de como se va a descargar el pdf
-        return $pdf->download('Empleado-'.$empleado->id.'.pdf');
+        return $pdf->download('Empleado-' . $empleado->id . '.pdf');
     }
-
-
-
 }

@@ -22,6 +22,7 @@ use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EntrevistaController;
 use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\ContratoController;
 use App\Models\Descuento;
 
 Route::get('/', function () {
@@ -37,7 +38,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 //y creamos un grupo de rutas protegidas para los controladores
 Route::group(['middleware' => ['auth']], function () {
-
+    Route::resource('contratos', ContratoController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('postulantes', PostulanteController::class);

@@ -36,19 +36,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($empleado as $empleados)
+                @foreach ($empleadosConCargo as $empleados)
                 <tr>
                     <td>{{$empleados->id}}</td>
                     <td>{{$empleados->Nombre}}</td>
                     <td>{{$empleados->Apellido}}</td>
                     <td>{{$empleados->Email}}</td>
                     <td>{{$empleados->Celular}}</td>
-                    <td> @foreach ($cargo as $cargos)
-                        @if($cargos->id==$empleados->idCargo)
-                        {{$cargos->Nombre}}
-                        @endif
-                        @endforeach
-                    </td>
+                    <td>{{$empleados->Cargo}}</td>                        
                 </tr>
                 @endforeach
             </tbody>
@@ -130,8 +125,8 @@
                             widths: [15, '*', '*', 'auto', 'auto', 'auto'],
                             body: [
                                 ["ID", "Nombres", "Apellidos", "E-mail", "Celular", "Cargo"],
-                                @foreach($empleado as $empleados)
-                                ["{{ $empleados->id }}", "{{ $empleados->Nombre }}", "{{ $empleados->Apellido }}", "{{ $empleados->Email }}", "{{ $empleados->Celular }}", "{{ $empleados->cargo->Nombre }}"],
+                                @foreach($empleadosConCargo as $empleados)
+                                ["{{ $empleados->id }}", "{{ $empleados->Nombre }}", "{{ $empleados->Apellido }}", "{{ $empleados->Email }}", "{{ $empleados->Celular }}", "{{ $empleados->Cargo}}"],
                                 @endforeach
                             ],
                         },
@@ -166,7 +161,7 @@
 
 
 <div class="row" id="employee-container">
-    @foreach ($empleado as $empleados)
+    @foreach ($empleadosConCargo as $empleados)
     <div class="col-lg-4 mb-3">
         <div class="card">
             <div class="card-body">
@@ -193,16 +188,10 @@
                                     <th>Celular:</th>
                                     <td>{{ $empleados->Celular }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th>Cargo:</th>
-                                    <td>
-                                        @foreach ($cargo as $cargos)
-                                        @if ($cargos->id == $empleados->idCargo)
-                                        {{ $cargos->Nombre }}
-                                        @endif
-                                        @endforeach
-                                    </td>
-                                </tr>
+                                    <td>{{ $empleados->Cargo }}</td>
+                                </tr> --}}
                             </tbody>
                         </table>
                         <div class="text-center">

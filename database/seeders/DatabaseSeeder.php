@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ContratoSeeder::class);
         $this->call(PostulanteSeeder::class);        
         $this->call(ReclutamientoSeeder::class);
+        $this->call(MemorandumSeeder::class);
+       
         
         
     }

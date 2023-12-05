@@ -19,37 +19,26 @@
                     </div>
                     @endif
 
-                    {!! Form::model($memorandum, ['method' => 'PATCH','route' => ['memorandums.update', $memorandum->id]]) !!}
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label for="subject">Asunto</label>
-                                {!! Form::text('subject', null, array('class' => 'form-control')) !!}
-                            </div>
-                        </div>                    
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label for="date">Fecha</label>
-                                {!! Form::text('date', null, array('class' => 'form-control')) !!}
-                            </div>
-                        </div>
-                        
-                        
+                    {!! Form::model($memorandums, ['method' => 'PATCH','route' => ['memorandums.update', $memorandums->id]]) !!}
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                        <label for="time">Hora</label>
-                        {!! Form::time('time', null, array('class' => 'form-control', 'id' => 'time', 'placeholder' => 'Hora')) !!}
+                    {{-- EDITAR------------- --}}
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        {!! Form::textarea('asunto', null,  ['class' => 'form-control', 'id' => 'asunto', 'placeholder' => 'Asunto']) !!}
                     </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 mb-3">
-                                <div class="form-group">
-                                    <label for="body">Contenido</label>
-                                    {!! Form::textarea('body', null, array('class' => 'form-control', 'id' => 'body', 'placeholder' => 'Contenido')) !!}
-                                </div>
+
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="contenido">Contenido</label>
+                                {!! Form::textarea('contenido', null, ['class' => 'form-control', 'id' => 'contenido', 'placeholder' => 'Contenido']) !!}
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 my-4">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <a class="btn btn-light" href="{{ route('memorandums.index') }}">Cancelar </a>
-                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 my-4">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a class="btn btn-light" href="{{ route('memorandums.index') }}">Cancelar </a>     
                     </div>
                     {!! Form::close() !!}
                 </div>

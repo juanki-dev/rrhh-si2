@@ -29,7 +29,7 @@
                         {!! Form::text('Descripcion', null, array('class' => 'form-control', 'id' => 'Descripcion')) !!}
                     </div>
                     <div class="form-group">
-                        <label for="idDepartamento">Seleccionar Cargo</label>
+                        <label for="idDepartamento">Seleccionar Departamento</label>
                         <select name="idDepartamento" class="form-control" id="idDepartamento">
                             @foreach ($departamentos as $dep)
                             <option value="{{ $dep->id }}">{{ $dep->Nombre }}</option>

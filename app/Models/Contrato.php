@@ -19,4 +19,8 @@ class Contrato extends Model
         'idEmpleado',
         'idHorario',
     ];
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class);
+    }
 }

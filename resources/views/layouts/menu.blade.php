@@ -72,7 +72,7 @@
             <div class="collapse" id="icons">
                 <a class="nav-link" href="/horarios">Gestionar Horarios</a>
                 <a class="nav-link" href="#">Gestionar Asistencias</a>
-                <a class="nav-link" href="#">Gestionar Horas Extras</a>
+                <a class="nav-link" href="/horas">Gestionar Horas Extras</a>
             </div>
           </li>
           <li class="nav-item">

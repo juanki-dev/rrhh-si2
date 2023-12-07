@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\Http\Controllers\MemorandumController;
-
 use App\Http\Controllers\BonoController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\VacacionController;
@@ -23,6 +22,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EntrevistaController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\HorasExtrasController;
 use App\Models\Descuento;
 
 Route::get('/', function () {
@@ -56,6 +56,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('bonos/empleados/ver/{id}', [BonoController::class, 'showEmpleado'])->name('bono.verEmpleado');
     Route::get('bonos/create/{id}', [BonoController::class, 'create'])->name('bono.create');
     Route::resource('bonos', BonoController::class);
+
+    Route::get('horas/empleados', [HorasExtrasController::class, 'indexEmpleado'])->name('hora.indexEmpleado');
+    Route::get('horas/empleados/ver/{id}', [HorasExtrasController::class, 'showEmpleado'])->name('hora.verEmpleado');
+    Route::get('horas/create/{id}', [HorasExtrasController::class, 'create'])->name('hora.create');
+    Route::resource('horas', HorasExtrasController::class);
 
     Route::get('descuentos/empleados', [DescuentoController::class, 'indexEmpleado'])->name('descuento.indexEmpleado');
     Route::get('descuentos/empleados/ver/{id}', [DescuentoController::class, 'showEmpleado'])->name('descuento.verEmpleado');

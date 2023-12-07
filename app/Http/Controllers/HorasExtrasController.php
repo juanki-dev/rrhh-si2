@@ -65,7 +65,6 @@ class HorasExtrasController extends Controller
             'estado' => 0, // Valor predeterminado
             'idEmpleado' => $request->idEmpleado,
             'idContrato' => $contrato->id,
-            // Otros campos necesarios
         ]);
     
         $horasExtras->save();
@@ -113,30 +112,34 @@ class HorasExtrasController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'fecha' => 'required|date',
+        $this->validate($request, [
+            'fecha' => 'required',
             'cantidad_hora' => 'required|numeric',
-            // Otras reglas de validación...
-    
-            // Excluir las reglas de validación para idEmpleado e idContrato al editar
-            'idEmpleado' => 'sometimes|required',
-            'idContrato' => 'sometimes|required',
+            'idEmpleado' => 'required',
         ]);
-
-        $montoHoraDefault = 30; // Monto por defecto por hora
-
-        $horasExtras = HorasExtras::find($id);
-
-        $horasExtras->Fecha = $request->fecha;
-        $horasExtras->Cantidad_Hora = $request->cantidad_hora;
-        $horasExtras->Monto_Hora = $montoHoraDefault;
-        $horasExtras->Monto_Total = $request->cantidad_hora * $montoHoraDefault;
-        $horasExtras->idEmpleado = $request->idEmpleado;
-        $horasExtras->idContrato = $request->idContrato;
-        $horasExtras->save();
-
+    
+        $horasExtras = HorasExtras::findOrFail($id);
+    
+        $contrato = Contrato::where('idEmpleado', $request->idEmpleado)->first();
+    
+        if (!$contrato) {
+            // Manejar el caso en el que el empleado no tiene contrato
+        }
+    
+        $montoHora = $this->calcularMontoHora($contrato);
+    
+        $horasExtras->update([
+            'Fecha' => $request->fecha,
+            'Cantidad_Hora' => $request->cantidad_hora,
+            'Monto_Hora' => $montoHora,
+            'Monto_Total' => $request->cantidad_hora * $montoHora,
+            'idEmpleado' => $request->idEmpleado,
+            'idContrato' => $contrato->id,
+        ]);
+    
         return redirect()->route('horas.index')->with('success', 'Horas extras actualizadas satisfactoriamente');
     }
+    
 
     public function show($id)
     {
@@ -155,7 +158,7 @@ class HorasExtrasController extends Controller
     
         if ($horasExtras) {
             // Cambiar el estado en lugar de eliminar
-            $horasExtras->estado = 2; // Suponiendo que 1 sea el código para "Anulado"
+            $horasExtras->estado = 2;
             $horasExtras->save();
     
             return redirect()->route('horas.index')->with('success', 'Horas extras anuladas satisfactoriamente');
@@ -163,6 +166,21 @@ class HorasExtrasController extends Controller
             return redirect()->route('horas.index')->with('error', 'Horas extras no encontradas');
         }
     }
+    public function markAsPaid($id)
+    {
+        $horaExtra = HorasExtras::find($id);
     
+        if ($horaExtra) {
+            // Marcar como pagado
+            $horaExtra->estado = 1;  // Asigna el estado correspondiente para "Pagado"
+            $horaExtra->save();
     
+            // Redirige a la vista de detalles
+            return redirect()->route('horas.index', $horaExtra->id)->with('success', 'Horas extras marcadas como pagadas');
+        } else {
+            return redirect()->route('horas.index')->with('error', 'Horas extras no encontradas');
+        }
+    }
+    
+
 }

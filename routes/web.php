@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('horas/empleados', [HorasExtrasController::class, 'indexEmpleado'])->name('hora.indexEmpleado');
     Route::get('horas/empleados/ver/{id}', [HorasExtrasController::class, 'showEmpleado'])->name('hora.verEmpleado');
     Route::get('horas/create/{id}', [HorasExtrasController::class, 'create'])->name('hora.create');
+    Route::post('horas/markAsPaid/{id}', [HorasExtrasController::class, 'markAsPaid'])->name('horas.markAsPaid');
     Route::resource('horas', HorasExtrasController::class);
 
     Route::get('descuentos/empleados', [DescuentoController::class, 'indexEmpleado'])->name('descuento.indexEmpleado');

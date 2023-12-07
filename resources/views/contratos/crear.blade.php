@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">CREAR CONTRATO</h2>
-                        <p class="card-description">Complete el formulario para crear un empleado.</p>
+                        <p class="card-description">Complete el formulario para crear un contrato para un empleado.</p>
                         @if ($errors->any())
                             <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                 <strong>¡Revise los campos!</strong>

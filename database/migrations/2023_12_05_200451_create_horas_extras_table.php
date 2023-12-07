@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('Fecha');
             $table->float('Cantidad_Hora');
             $table->float('Monto_Hora');
-            $table->float('Monto_Total');
+            $table->float('Monto_Total');          
             $table->unsignedTinyInteger('estado')->default(0)->comment('0 = pendiente; 1 = pagado; 2 = anulado');;
             $table->unsignedBigInteger('idEmpleado')->nullable();
             $table->unsignedBigInteger('idContrato')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             
             $table->foreign('idContrato')
                 ->references('id')
-                ->on('Contratos')
+                ->on('contratos')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();

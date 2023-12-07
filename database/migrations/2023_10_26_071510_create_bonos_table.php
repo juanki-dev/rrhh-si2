@@ -19,12 +19,20 @@ return new class extends Migration
             $table->string('motivo', 100);
             $table->string('observacion', 100);
             $table->unsignedTinyInteger('estado')->default(0)->comment('0 = pendiente; 1 = pagado; 2 = anulado');;
+           
             $table->unsignedBigInteger('idEmpleado');
+            $table->unsignedBigInteger('idPlanillasueldo')->nullable();
+            
             $table->foreign('idEmpleado')
             ->references('id')
             ->on('empleados')
             ->onUpdate('cascade')
-            ->onDelete('cascade');
+            ->onDelete('set null');
+            $table->foreign('idPlanillasueldo')
+                ->references('id')
+                ->on('planillasueldos')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }

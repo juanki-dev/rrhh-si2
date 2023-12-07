@@ -23,6 +23,8 @@ use App\Http\Controllers\EntrevistaController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\HorasExtrasController;
+use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\PlanillasueldoController;
 use App\Models\Descuento;
 
 Route::get('/', function () {
@@ -46,7 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('departamentos', DepartamentoController::class);
     Route::resource('bitacora', BitacoraController::class)->names('bitacora');
     Route::resource('roles', RoleController::class);
-    
+
     Route::get('memorandums/empleados', [MemorandumController::class, 'indexEmpleado'])->name('memorandum.indexEmpleado');
     Route::get('memorandums/empleados/ver/{id}', [MemorandumController::class, 'showEmpleado'])->name('memorandum.verEmpleado');
     Route::get('memorandums/create/{id}', [MemorandumController::class, 'create'])->name('memorandum.create');
@@ -68,23 +70,28 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('descuentos/create/{id}', [DescuentoController::class, 'create'])->name('descuento.create');
     Route::resource('descuentos', DescuentoController::class);
 
+    Route::get('asistencias/marcar', [AsistenciaController::class, 'indexMarcar'])->name('asistencia.indexMarcar');
+    Route::resource('asistencias', AsistenciaController::class);
 
-    Route::get('vacaciones/empleados', [VacacionController::class, 'indexEmpleado'])->name('vacacion.indexEmpleado'); 
+    Route::get('vacaciones/empleados', [VacacionController::class, 'indexEmpleado'])->name('vacacion.indexEmpleado');
     Route::get('vacaciones/empleados/ver/{id}', [VacacionController::class, 'showEmpleado'])->name('vacacion.verEmpleado');
     Route::get('vacaciones/create/{id}', [VacacionController::class, 'create'])->name('vacacion.create');
     Route::resource('vacaciones', VacacionController::class);
 
     Route::get('reclutamientos/assign/{id}', [ReclutamientoController::class, 'assign'])->name('reclutamientos.assign');
-    Route::get('postulantereclutamiento/store/{idpostulante}/{idreclutamiento}',[PostulanteReclutamientoController::class, 'store2'])->name('postulantereclutamientos.store');
+    Route::get('postulantereclutamiento/store/{idpostulante}/{idreclutamiento}', [PostulanteReclutamientoController::class, 'store2'])->name('postulantereclutamientos.store');
     Route::resource('reclutamientos', ReclutamientoController::class);
-    
-    Route::get('permisos/empleados', [PermisoController::class, 'indexEmpleado'])->name('permiso.indexEmpleado'); 
+
+    Route::get('permisos/empleados', [PermisoController::class, 'indexEmpleado'])->name('permiso.indexEmpleado');
     Route::get('permisos/empleados/ver/{id}', [PermisoController::class, 'showEmpleado'])->name('permiso.verEmpleado');
     Route::get('permisos/create/{id}', [PermisoController::class, 'create'])->name('permiso.create');
     Route::resource('permisos', PermisoController::class);
 
     Route::resource('entrevistas', EntrevistaController::class);
     Route::resource('horarios', HorarioController::class);
+
+    Route::get('planillasueldos/empleados/{id}/{id}', [PlanillasueldoController::class, 'showEmpleado'])->name('planilla.verEmpleado');
+    Route::resource('planillasueldos', PlanillasueldoController::class);
 
     //para los pdfs aqui iran las rutas
     Route::get('/empleados/{empleado}/download-pdf', [EmpleadoController::class, 'downloadPDF'])->name('empleados.pdf');
@@ -93,4 +100,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/backup', [BackupController::class, 'create'])->name('backup.create');
     Route::get('/backup/download/{fileName}', [BackupController::class, 'download'])->name('backup.download');
     Route::post('/backup/restore-database', [BackupController::class, 'restoreDatabase'])->name('backup.restoreDatabase');
+
+    // routes/web.php
+
+
+    Route::post('/asistencias/create', [AsistenciaController::class, 'store2'])->name('asistencias.store2');
 });

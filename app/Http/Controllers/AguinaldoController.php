@@ -128,11 +128,10 @@ class AguinaldoController extends Controller
                 }
                 //===============================================================================
                 //solo toma en cuenta dias de este año
-                $tipo = 0;
                 if($inicio >= $primerDiaDelAnio && $inicio <= $ultimoDiaDelAnio && $fin >= $primerDiaDelAnio && $fin <= $ultimoDiaDelAnio && $inicio <= $fin){
                     $dias = floor(($fin - $inicio + 1) / (60 * 60 * 24)) ;
                     //sum = sum + (dias/tipo) * sueldo + (dias%tipo) * (sueldo/tipo);
-                    $tipo = 0;
+                    $tipo = 1;
                     switch ($contratos->tipo_pago) {
                         case 'Quincenal':
                             $tipo = 15;
@@ -167,18 +166,11 @@ class AguinaldoController extends Controller
         ]);
 
         // $contratosTodos = Contrato::All();
-         $contratos = Contrato::where('idEmpleado', $request->idEmpleado)->get();
-        // $contratos = [];
-        // foreach($contratosTodos as $contrato){
-        //     if($contrato->idEmpleado == $request->idEmpleado){
-        //         $contratos[] = $contrato;
-        //     }
-        // }
-        $empleado = Empleado::where('id', $request->idEmpleado)->first();
-        dd($request->input('empleadoId'));
+        $contratos = Contrato::where('idEmpleado', $request->input('idEmpleado'))->get();
+        $empleado = Empleado::where('id', $request->input('idEmpleado'))->first();
         
         $montoAguinaldo = $this -> calcularMonto($contratos, $empleado);
-        
+        // dd($montoAguinaldo);
         /////////////////////////////////////////////
         $boliviaTime = Carbon::now('America/La_Paz');
         $fecha = $boliviaTime->toDateString();
@@ -188,7 +180,7 @@ class AguinaldoController extends Controller
         $aguinaldo->fecha = $fecha;
         $aguinaldo->hora =  $hora;
         $aguinaldo->monto = $montoAguinaldo;
-        $aguinaldo->idEmpleado = $empleado->id;
+        $aguinaldo->idEmpleado = $request->input('idEmpleado');
         $aguinaldo->dias = 0;
         $aguinaldo->save();
 

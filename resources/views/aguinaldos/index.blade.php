@@ -169,7 +169,7 @@
                                                 
                                                 {!! Form::open([
                                                     'method' => 'DELETE', 
-                                                    'route' => ['aguinaldos.destroy', aguinaldo->id], 
+                                                    'route' => ['aguinaldos.destroy', $aguinaldo->id], 
                                                     'style' => 'display:inline'
                                                 ]) !!}
                                                 {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}

@@ -164,16 +164,16 @@
                                             <td>{{ $aguinaldo->monto }}</td>
 
                                             <td>
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('aguinaldos.edit', $aguinaldo->id) }}">Editar</a>
+                                                {{-- <a class="btn btn-primary"
+                                                    href="{{ route('aguinaldos.edit', $aguinaldo->id) }}">Editar</a> --}}
                                                 
-                                                {!! Form::open([
+                                                {{-- {!! Form::open([
                                                     'method' => 'DELETE', 
                                                     'route' => ['aguinaldos.destroy', $aguinaldo->id], 
                                                     'style' => 'display:inline'
                                                 ]) !!}
                                                 {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
-                                                {!! Form::close() !!}
+                                                {!! Form::close() !!} --}}
 
                                                 <a class="btn btn-success" href="{{ route('aguinaldos.show', $aguinaldo->id) }}">Ver
                                                     detalle</a>

@@ -51,8 +51,8 @@
                                             @endforeach --}}
                                             
                                             <td>
-                                                <a class="btn btn-success"  href="{{ route('aguinaldo.create', ['id' => $empleados->id]) }}">Asignar</a>
-                                                <a class="btn btn-dark ml-auto"  href="{{ route('aguinaldo.verEmpleado', ['id' => $empleados->id]) }}">Ver Aguinaldos21</a>
+                                                <a class="btn btn-success"  href="{{ route('aguinaldo.create', ['id' => $empleados->id]) }}">Pagar</a>
+                                                {{-- <a class="btn btn-dark ml-auto"  href="{{ route('aguinaldo.verEmpleado', ['id' => $empleados->id]) }}">Ver Aguinaldos21</a> --}}
                                             </td>
                                         </tr>
                                     @endforeach

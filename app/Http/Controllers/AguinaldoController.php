@@ -152,7 +152,8 @@ class AguinaldoController extends Controller
                 } 
             }
         }
-        $sum = $sum / 360 * $diasTotales;//SP o salario promedio 
+        
+        $sum = $sum / 365 * 30;//SP o salario promedio 
         return $sum;
     }
 
@@ -170,7 +171,7 @@ class AguinaldoController extends Controller
         $empleado = Empleado::where('id', $request->input('idEmpleado'))->first();
         
         $montoAguinaldo = $this -> calcularMonto($contratos, $empleado);
-        // dd($montoAguinaldo);
+        //  dd($montoAguinaldo);
         /////////////////////////////////////////////
         $boliviaTime = Carbon::now('America/La_Paz');
         $fecha = $boliviaTime->toDateString();

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
+use App\Http\Controllers\AguinaldoController;
 use App\Http\Controllers\MemorandumController;
 
 use App\Http\Controllers\BonoController;
@@ -51,6 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('memorandums/empleados/ver/{id}', [MemorandumController::class, 'showEmpleado'])->name('memorandum.verEmpleado');
     Route::get('memorandums/create/{id}', [MemorandumController::class, 'create'])->name('memorandum.create');
     Route::resource('memorandums', MemorandumController::class);
+
+    Route::get('aguinaldos/empleados', [AguinaldoController::class, 'indexEmpleado'])->name('aguinaldo.indexEmpleado');
+    Route::get('aguinaldos/empleados/ver/{id}', [AguinaldoController::class, 'showEmpleado'])->name('aguinaldo.verEmpleado');
+    Route::get('aguinaldos/create/{id}', [AguinaldoController::class, 'create'])->name('aguinaldo.create');
+    Route::resource('aguinaldos', AguinaldoController::class);
 
     Route::get('bonos/empleados', [BonoController::class, 'indexEmpleado'])->name('bono.indexEmpleado');
     Route::get('bonos/empleados/ver/{id}', [BonoController::class, 'showEmpleado'])->name('bono.verEmpleado');

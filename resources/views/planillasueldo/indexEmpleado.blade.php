@@ -32,10 +32,6 @@
                                             <td>{{ $empleadocontrato->sueldo }}</td>
                                             <td>{{ $empleadocontrato->tipo_pago }}</td>
                                                        
-                                            <td>
-                                                <a class="btn btn-success"  href="{{ route('bono.create', ['id' => $empleados->id]) }}">Asignar</a>
-                                                <a class="btn btn-dark ml-auto"  href="{{ route('bono.verEmpleado', ['id' => $empleados->id]) }}">Ver Bonos</a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

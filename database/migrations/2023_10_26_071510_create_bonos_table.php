@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('observacion', 100);
             $table->unsignedTinyInteger('estado')->default(0)->comment('0 = pendiente; 1 = pagado; 2 = anulado');;
            
-            $table->unsignedBigInteger('idEmpleado');
+            $table->unsignedBigInteger('idEmpleado')->nullable();
             $table->unsignedBigInteger('idPlanillasueldo')->nullable();
             
             $table->foreign('idEmpleado')

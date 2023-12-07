@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('planillaempleados', function (Blueprint $table) {
             $table->id();
-            $table->float('sueldo');
-            $table->float('horas_trabajadas');
-            /* $table->float('horas_extras');
-            $table->float('monto_horas_extras'); */
-            $table->float('bono_total');
-            /* $table->float('descuento_total'); */
-            $table->float('afp');
-            $table->float('liquido');
+            $table->float('sueldo')->nullable();
+            $table->float('horas_trabajadas')->nullable();
+            $table->float('horas_extras')->nullable();
+            $table->float('monto_horas_extras')->nullable();
+            $table->float('bono_total')->nullable();
+            $table->float('descuento_total')->nullable();
+            $table->float('afp')->nullable();
+            $table->float('liquido')->nullable();
 
             $table->unsignedBigInteger('idPlanillasueldo')->nullable();
             $table->unsignedBigInteger('idEmpleado')->nullable();

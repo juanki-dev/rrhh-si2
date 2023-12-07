@@ -11,7 +11,7 @@
                             <a class="btn btn-dark ml-auto" href="{{ route('planillasueldos.index') }}">Atras </a>
                         </div>
                         <div class="table-responsive">
-                           
+
                             <table class="table">
                                 <h3 class="page__heading">Empleados</h3>
                                 <thead>
@@ -24,14 +24,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $empleadocontratos as $empleadocontrato)
+                                    @foreach ($empleadocontratos as $empleadocontrato)
                                         <tr>
                                             <td>{{ $empleadocontrato->idEmpleado }}</td>
                                             <td>{{ $empleadocontrato->NombreEmpleado }}</td>
                                             <td>{{ $empleadocontrato->ApellidoEmpleado }}</td>
                                             <td>{{ $empleadocontrato->sueldo }}</td>
+
                                             <td>{{ $empleadocontrato->tipo_pago }}</td>
-                                                       
+                                            <td>
+                                                <a class="btn btn-success"
+                                                    href="{{ route('planilla.createPago', [
+                                                        'id_empleado' => $empleadocontrato->idEmpleado,
+                                                        'id_contrato' => $empleadocontrato->id, //id de contrato
+                                                        'id_planillasueldo' => $id_planillasueldo,
+                                                    ]) }}">Liquidar</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

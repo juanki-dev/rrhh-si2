@@ -29,7 +29,9 @@
                                     <td>{{ $planilla->Total_pagado }}</td>
                                    
                                     <td>
-                                        <a class="btn btn-primary" href="{{ route('planilla.verEmpleado', $planilla->Tipo) }}">Liquidar</a>
+                                        
+                                        <a class="btn btn-primary" href="{{ route('planilla.verEmpleado', ['tipo' => $planilla->Tipo, 'id_planillasueldo' => $planilla->id]) }}">Liquidar</a>
+
                                     </td>
                                 </tr>
                                 @endforeach

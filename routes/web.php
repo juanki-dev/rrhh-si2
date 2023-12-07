@@ -90,7 +90,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('entrevistas', EntrevistaController::class);
     Route::resource('horarios', HorarioController::class);
 
-    Route::get('planillasueldos/empleados/{id}', [PlanillasueldoController::class, 'showEmpleado'])->name('planilla.verEmpleado');
+    Route::get('planillasueldos/empleados/{tipo}/{id_planillasueldo}', [PlanillasueldoController::class, 'showEmpleado'])->name('planilla.verEmpleado');
+    Route::get('planillasueldos/empleados/pagar/{id_empleado}/{id_contrato}/{id_planillasueldo}', [PlanillasueldoController::class, 'createPago'])->name('planilla.createPago');
     Route::resource('planillasueldos', PlanillasueldoController::class);
 
     //para los pdfs aqui iran las rutas

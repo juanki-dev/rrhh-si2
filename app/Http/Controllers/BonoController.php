@@ -67,6 +67,7 @@ class BonoController extends Controller
         $bono->observacion = $observacion;
         $bono->estado = 0;
         $bono->idEmpleado = $request->input('empleadoId');
+        $bono->idPlanillasueldo = null;
         $bono->save();
 
         $this->addBitacora("Bono", "Registró");
@@ -90,6 +91,28 @@ class BonoController extends Controller
         $bono->save();
         $this->addBitacora("Bono", "Editó");
         return redirect()->route('bonos.index');
+    }
+
+    public function bonoPlanilla($id, $idPlanillasueldo)
+    {
+        $bono = Bono::find($id);
+
+        if ($bono) {
+            $bono->idPlanillasueldo = $idPlanillasueldo;
+            $bono->save();
+        } else {
+        }
+    }
+
+    public function bonoPagado($id)
+    {
+        $bono = Bono::find($id);
+
+        if ($bono) {
+            $bono->estado = 1;
+            $bono->save();
+        } else {
+        }
     }
 
 

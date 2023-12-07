@@ -1,18 +1,18 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
+    <ul class="nav">
+        <li class="nav-item">
             <a class="nav-link" href="/dashboard">
-              <i class="ti-trello menu-icon"></i>
-              <span class="menu-title">Panel</span>
+                <i class="ti-trello menu-icon"></i>
+                <span class="menu-title">Panel</span>
             </a>
-          </li>
+        </li>
 
-          <!--Reclutamiento-->
-          <li class="nav-item">
+        <!--Reclutamiento-->
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="ti-briefcase menu-icon"></i>
-              <span class="menu-title">Reclutamiento</span>
-              <i class="menu-arrow"></i>
+                <i class="ti-briefcase menu-icon"></i>
+                <span class="menu-title">Reclutamiento</span>
+                <i class="menu-arrow"></i>
             </a>
             <!--Submenu..-->
             <div class="collapse" id="ui-basic">
@@ -20,13 +20,14 @@
                 <a class="nav-link" href="/postulantes">Gestionar Postulantes</a>
                 <a class="nav-link" href="/entrevistas">Gestionar Entrevistas</a>
             </div>
-          </li>
-          <!--Menu..Empleados-->
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-              <i class="ti-user menu-icon"></i>
-              <span class="menu-title">Empleados</span>
-              <i class="menu-arrow"></i>
+        </li>
+        <!--Menu..Empleados-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+                aria-controls="form-elements">
+                <i class="ti-user menu-icon"></i>
+                <span class="menu-title">Empleados</span>
+                <i class="menu-arrow"></i>
             </a>
             <!--Submenu..-->
             <div class="collapse" id="form-elements">
@@ -36,58 +37,62 @@
                 <a class="nav-link" href="/permisos">Gestionar Permisos</a>
                 <a class="nav-link" href="/vacaciones">Gestionar Vacacion</a>
             </div>
-          </li>
-          <!--Planilla de Sueldos-->
-          <li class="nav-item">
+        </li>
+        <!--Planilla de Sueldos-->
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="ti-agenda menu-icon"></i>
-              <span class="menu-title">Planilla de Sueldos</span>
-              <i class="menu-arrow"></i>
+                <i class="ti-agenda menu-icon"></i>
+                <span class="menu-title">Planilla de Sueldos</span>
+                <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
+                <a class="nav-link" href="/planillasueldos">Gestionar Planilla</a>
+                <a class="nav-link" href="#">Gestionar Aguinaldos</a>
                 <a class="nav-link" href="#">Gestionar Planilla</a>
                 <a class="nav-link" href="/aguinaldos">Gestionar Aguinaldos</a>
                 <a class="nav-link" href="#">Gestionar Reportes Planilla</a>
                 <a class="nav-link" href="/bonos">Gestionar Bono</a>
                 <a class="nav-link" href="/descuentos">Gestionar Descuento</a>
             </div>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="ti-blackboard menu-icon"></i>
-              <span class="menu-title">Dpto Trabajos</span>
-              <i class="menu-arrow"></i>
+                <i class="ti-blackboard menu-icon"></i>
+                <span class="menu-title">Dpto Trabajos</span>
+                <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
                 <a class="nav-link" href="/departamentos">Gestionar Departamentos</a>
                 <a class="nav-link" href="/cargos">Gestionar Cargos</a>
             </div>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="ti-timer menu-icon"></i>
-              <span class="menu-title">Horarios</span>
-              <i class="menu-arrow"></i>
+                <i class="ti-timer menu-icon"></i>
+                <span class="menu-title">Horarios</span>
+                <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="icons">
                 <a class="nav-link" href="/horarios">Gestionar Horarios</a>
-                <a class="nav-link" href="#">Gestionar Asistencias</a>
-                <a class="nav-link" href="#">Gestionar Horas Extras</a>
+                <a class="nav-link" href="/asistencias">Gestionar Asistencias</a>
+                <a class="nav-link" href="/asistencias/marcar">Marcar Asistencia</a>
+                <a class="nav-link" href="/horas">Gestionar Horas Extras</a>
+                
             </div>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
-              <i class="ti-id-badge menu-icon"></i>
-              <span class="menu-title">Usuarios</span>
-              <i class="menu-arrow"></i>
+                <i class="ti-id-badge menu-icon"></i>
+                <span class="menu-title">Usuarios</span>
+                <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="users">
                 <a class="nav-link" href="/usuarios">Gestionar Usuarios</a>
                 <a class="nav-link" href="/roles">Gestionar Roles</a>
                 <a class="nav-link" href="/bitacora">Gestionar Bitacora</a>
             </div>
-          </li>
-     </ul>
+        </li>
+    </ul>
 </nav>
 
 <!-- use los iconos de la pagina https://themify.me/themify-icons -->

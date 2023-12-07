@@ -36,5 +36,9 @@ class Empleado extends Model
     {
         return $this->hasMany(Aguinaldo::class, 'idEmpleado');
     }
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class, 'idEmpleado');
+    }
   
 }

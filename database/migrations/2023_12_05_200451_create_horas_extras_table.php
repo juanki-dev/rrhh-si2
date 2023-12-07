@@ -11,28 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bonos', function (Blueprint $table) {
+        Schema::create('horas_extras', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->time('hora');
-            $table->decimal('monto', 8, 2);
-            $table->string('motivo', 100);
-            $table->string('observacion', 100);
+            $table->date('Fecha');
+            $table->float('Cantidad_Hora');
+            $table->float('Monto_Hora');
+            $table->float('Monto_Total');          
             $table->unsignedTinyInteger('estado')->default(0)->comment('0 = pendiente; 1 = pagado; 2 = anulado');;
-           
             $table->unsignedBigInteger('idEmpleado')->nullable();
-            $table->unsignedBigInteger('idPlanillasueldo')->nullable();
-            
+            $table->unsignedBigInteger('idContrato')->nullable();
             $table->foreign('idEmpleado')
             ->references('id')
             ->on('empleados')
             ->onUpdate('cascade')
-            ->onDelete('set null');
-            $table->foreign('idPlanillasueldo')
+            ->onDelete('cascade');
+            
+            $table->foreign('idContrato')
                 ->references('id')
-                ->on('planillasueldos')
+                ->on('contratos')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -42,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bonos');
+        Schema::dropIfExists('horas_extras');
     }
 };

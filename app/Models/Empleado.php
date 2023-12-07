@@ -32,6 +32,10 @@ class Empleado extends Model
     {
         return $this->hasMany(Contrato::class, 'idEmpleado');
     }
+    public function aguinaldos()
+    {
+        return $this->hasMany(Aguinaldo::class, 'idEmpleado');
+    }
     public function asistencias()
     {
         return $this->hasMany(Asistencia::class, 'idEmpleado');

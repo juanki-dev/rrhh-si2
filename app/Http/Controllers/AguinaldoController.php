@@ -175,7 +175,7 @@ class AguinaldoController extends Controller
         //     }
         // }
         $empleado = Empleado::where('id', $request->idEmpleado)->first();
-        dd($request->idEmpleado);
+        dd($request->input('empleadoId'));
         
         $montoAguinaldo = $this -> calcularMonto($contratos, $empleado);
         
